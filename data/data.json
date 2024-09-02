@@ -1,0 +1,65 @@
+[
+  {
+    "name": "1",
+    "coordinates": {
+      "x": 2,
+      "y": 2.0
+    },
+    "creationDate": "2024-06-20",
+    "area": 2,
+    "numberOfRooms": 2,
+    "height": 2,
+    "kitchenArea": 2.0,
+    "view": "BAD",
+    "house": {
+      "name": "2",
+      "year": 2,
+      "numberOfFlatsOnFloor": 2,
+      "numberOfLifts": 2
+    },
+    "userId": null,
+    "id": 3
+  },
+  {
+    "name": "Alpha",
+    "coordinates": {
+      "x": 4,
+      "y": 4.0
+    },
+    "creationDate": "2024-06-20",
+    "area": 4,
+    "numberOfRooms": 4,
+    "height": 4,
+    "kitchenArea": 4.0,
+    "view": "BAD",
+    "house": {
+      "name": "4",
+      "year": 4,
+      "numberOfFlatsOnFloor": 4,
+      "numberOfLifts": 4
+    },
+    "userId": null,
+    "id": 1
+  },
+  {
+    "name": "Beta",
+    "coordinates": {
+      "x": 4,
+      "y": 4.0
+    },
+    "creationDate": "2024-06-20",
+    "area": 4,
+    "numberOfRooms": 5,
+    "height": 5,
+    "kitchenArea": 5.0,
+    "view": "BAD",
+    "house": {
+      "name": "5",
+      "year": 5,
+      "numberOfFlatsOnFloor": 5,
+      "numberOfLifts": 5
+    },
+    "userId": null,
+    "id": 2
+  }
+]
