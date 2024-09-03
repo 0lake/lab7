@@ -32,7 +32,7 @@ public class ConnectionManager {
             Properties properties = new Properties();
             properties.load(input);
 
-            dbUrl = properties.getProperty("db.url");
+            dbUrl = properties.getProperty("db.url.alt");
             dbName = properties.getProperty("db.name");
             user = properties.getProperty("db.user");
             password = properties.getProperty("db.password");
