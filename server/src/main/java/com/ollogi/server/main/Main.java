@@ -22,7 +22,7 @@ import static com.ollogi.server.managers.DatabaseManager.createDatabaseIfNotExis
 
 public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
-    private static final int PORT = 28374;
+    private static final int PORT = 28370;
 
     public static void main(String[] args) {
         Interrogator.setUserScanner(new Scanner(System.in));
