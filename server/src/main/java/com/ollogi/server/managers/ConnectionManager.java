@@ -64,7 +64,7 @@ public class ConnectionManager {
     public static Connection getConnection() {
         try {
             // Возвращаем соединение с базой данных с использованием указанных учетных данных.
-            return DriverManager.getConnection(dbUrl + dbName, user, password);
+            return DriverManager.getConnection(dbUrl + dbName);
         } catch (SQLException e) {
             logError("Не удалось установить соединение", e);
             return null;
