@@ -9,6 +9,7 @@ import com.general.models.base.Element;
 import com.general.network.Request;
 import com.general.network.Response;
 
+import java.nio.file.AccessDeniedException;
 import java.util.Optional;
 
 /**
@@ -24,6 +25,7 @@ public class RemoveById<T extends Element & Comparable<T>> extends Command {
 
     /**
      * Выполняет команду
+     *
      * @return Response с результатом выполнения команды.
      */
     @Override
@@ -49,7 +51,8 @@ public class RemoveById<T extends Element & Comparable<T>> extends Command {
             }
 
             // Удаляем элемент из коллекции
-            collectionManager.removeFromCollection(elementToRemove.get(), request.getLogin());
+            if (!collectionManager.removeFromCollection(elementToRemove.get(), request.getLogin()))
+                throw new AccessDeniedException("У вас нет доступа к этому элементу!");
             return new Response(true, "Элемент успешно удален.");
 
 
@@ -61,6 +64,8 @@ public class RemoveById<T extends Element & Comparable<T>> extends Command {
             return new Response(false, "ID должен быть представлен числом!");
         } catch (NotFoundException exception) {
             return new Response(false, "Элемента с таким ID в коллекции нет!");
+        } catch (AccessDeniedException exception) {
+            return new Response(false, exception.getMessage());
         } catch (Exception e) {
             return new Response(false, "Произошла непредвиденная ошибка: " + e.getMessage());
         }
