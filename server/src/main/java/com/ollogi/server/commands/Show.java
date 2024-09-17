@@ -74,11 +74,12 @@ public class Show<T extends Element & Comparable<T>> extends Command {
      */
     private String[] getFieldNames(T element) {
         Field[] fields = element.getClass().getDeclaredFields();
-        String[] fieldNames = new String[fields.length + 1];
+        String[] fieldNames = new String[fields.length + 2];
         fieldNames[0] = "id"; // Добавляем id как первое поле
         for (int i = 0; i < fields.length; i++) {
             fieldNames[i + 1] = fields[i].getName();
         }
+        fieldNames[fieldNames.length - 1] = "username";
         return fieldNames;
     }
 
@@ -91,14 +92,16 @@ public class Show<T extends Element & Comparable<T>> extends Command {
      */
     private String[] getFieldValues(T element) throws IllegalAccessException {
         Field[] fields = element.getClass().getDeclaredFields();
-        String[] fieldValues = new String[fields.length + 1];
+        String[] fieldValues = new String[fields.length + 2];
         fieldValues[0] = String.valueOf(getId(element)); // Добавляем значение id как первое поле
         for (int i = 0; i < fields.length; i++) {
             fields[i].setAccessible(true);
             fieldValues[i + 1] = String.valueOf(fields[i].get(element));
         }
+        fieldValues[fieldValues.length - 1] = element.getUsername();
         return fieldValues;
     }
+
 
     /**
      * Определяет ширину каждой колонки для форматирования таблицы
