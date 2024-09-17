@@ -54,8 +54,9 @@ public class RemoveLower<T extends Element & Comparable<T>> extends Command {
 
         // Использование Stream API для фильтрации и удаления элементов
         List<T> elementsToRemove = collection.stream()
-                .filter(e -> e.compareTo(element) < 0)
+                .filter(e -> (e.compareTo(element) > 0 && e.getUsername().equals(element.getUsername())))
                 .collect(Collectors.toList());
+
 
         elementsToRemove.forEach(element1 -> collectionManager.removeFromCollection(element1, request.getLogin()));
 
