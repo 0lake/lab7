@@ -52,14 +52,20 @@ public class RemoveLower<T extends Element & Comparable<T>> extends Command {
             return 0;
         }
 
-        // Использование Stream API для фильтрации и удаления элементов
+        // Использование Stream API для фильтрации элементов, которые меньше указанного
         List<T> elementsToRemove = collection.stream()
-                .filter(e -> (e.compareTo(element) > 0 && e.getUsername().equals(element.getUsername())))
+                .filter(e -> e.compareTo(element) < 0)
                 .collect(Collectors.toList());
 
+        // Подсчет успешно удалённых элементов с помощью метода removeFromCollection
+        int removedCount = 0;
+        for (T elementToRemove : elementsToRemove) {
+            if (collectionManager.removeFromCollection(elementToRemove, request.getLogin())) {
+                removedCount++;
+            }
+        }
 
-        elementsToRemove.forEach(element1 -> collectionManager.removeFromCollection(element1, request.getLogin()));
-
-        return elementsToRemove.size();
+        return removedCount;
     }
+
 }
