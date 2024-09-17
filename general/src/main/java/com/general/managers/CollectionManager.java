@@ -168,9 +168,10 @@ public abstract class CollectionManager<T extends Element & Comparable<T>> {
     /**
      * Удаляет элемент из коллекции.
      *
-     * @param element элемент для удаления.
+     * @param element  элемент для удаления.
+     * @param username
      */
-    public boolean removeFromCollection(T element) {
+    public boolean removeFromCollection(T element, String username) {
         return collection.remove(element);
     }
 

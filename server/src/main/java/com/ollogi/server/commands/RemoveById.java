@@ -49,7 +49,7 @@ public class RemoveById<T extends Element & Comparable<T>> extends Command {
             }
 
             // Удаляем элемент из коллекции
-            collectionManager.removeFromCollection(elementToRemove.get());
+            collectionManager.removeFromCollection(elementToRemove.get(), request.getLogin());
             return new Response(true, "Элемент успешно удален.");
 
 

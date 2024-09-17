@@ -2,11 +2,9 @@ package com.ollogi.server.managers;
 
 import com.general.managers.CollectionManager;
 import com.general.models.Flat;
-import com.general.models.base.Element;
 import com.ollogi.server.data.FlatDAO;
 import com.ollogi.server.data.UserDAO;
 
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Comparator;
@@ -98,18 +96,21 @@ public class FlatCollectionManager extends CollectionManager<Flat> {
     /**
      * Удаляет объект Flat из коллекции и базы данных.
      *
-     * @param element объект Flat для удаления.
+     * @param element  объект Flat для удаления.
+     * @param username
      * @return {@code true}, если удаление прошло успешно, иначе {@code false}.
      */
     @Override
-    public boolean removeFromCollection(Flat element) {
+    public boolean removeFromCollection(Flat element, String username) {
+        if (element == null) return false;
+        if (!element.getUsername().equals(username)) return false;
         try {
             if (!flatDAO.removeFlatById(element.getId())) throw new Exception();
         } catch (Exception e) {
             return false;
         }
         synchronized (this) {
-            return super.removeFromCollection(element);
+            return super.removeFromCollection(element, username);
         }
     }
 

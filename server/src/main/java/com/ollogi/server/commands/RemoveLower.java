@@ -33,7 +33,7 @@ public class RemoveLower<T extends Element & Comparable<T>> extends Command {
             @SuppressWarnings("unchecked")
             T element = (T) request.getData();
 
-            int removedElementsCount = removeLower(element);
+            int removedElementsCount = removeLower(element, request);
             return new Response(true, "Удалено " + removedElementsCount + " элементов, меньших, чем заданный.");
 
         } catch (WrongAmountOfElementsException exception) {
@@ -43,7 +43,7 @@ public class RemoveLower<T extends Element & Comparable<T>> extends Command {
         }
     }
 
-    private int removeLower(T element) {
+    private int removeLower(T element, Request request) {
         var collection = collectionManager.getCollection();
         collectionManager.sortCollection();
 
@@ -57,7 +57,7 @@ public class RemoveLower<T extends Element & Comparable<T>> extends Command {
                 .filter(e -> e.compareTo(element) < 0)
                 .collect(Collectors.toList());
 
-        elementsToRemove.forEach(collectionManager::removeFromCollection);
+        elementsToRemove.forEach(element1 -> collectionManager.removeFromCollection(element1, request.getLogin()));
 
         return elementsToRemove.size();
     }
